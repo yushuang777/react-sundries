@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Button, Form, Input, Select } from 'antd';
 import React, { useState } from 'react';
 function LazyFunciton(props: any) {
@@ -6,7 +8,7 @@ function LazyFunciton(props: any) {
   function lazyEvaluate(fn: { (a: any, b: any): number; (arg0: any): any }) {
     let result: any;
     let isEvaluated = false;
-    return function(...args: any) {
+    return function (...args: any) {
       if (!isEvaluated) {
         result = fn(...args);
         isEvaluated = true;
@@ -20,7 +22,7 @@ function LazyFunciton(props: any) {
     maxCacheSize = 100
   ) {
     const cache = {};
-    return function(...args: any[]) {
+    return function (...args: any[]) {
       const key = args.join(',');
       if (cache[key]) {
         console.log('Returning from cache:', key);
@@ -55,8 +57,8 @@ function LazyFunciton(props: any) {
     console.log(lazyAdd(99999, 99999)); // 第一次计算，应该会有明显的延迟
     console.log('再次调用...');
     console.log(lazyAdd(99999, 99999)); // 第二次调用，应该直接返回缓存结果
-    // console.log('再次调用...');
-    // console.log(lazyAdd(6666, 6666));
+    console.log('再次调用...');
+    console.log(lazyAdd(6666, 6666));
   };
 
   const count2 = () => {
@@ -90,11 +92,11 @@ function LazyFunciton(props: any) {
       if (!clipboardCopy) {
         // 第一次调用时进行初始化
         if (navigator.clipboard) {
-          clipboardCopy = function(value: string) {
+          clipboardCopy = function (value: string) {
             navigator.clipboard.writeText(value);
           };
         } else {
-          clipboardCopy = function(value: string) {
+          clipboardCopy = function (value: string) {
             const input = document.createElement('input');
             input.setAttribute('value', value);
             document.body.appendChild(input);
@@ -114,7 +116,7 @@ function LazyFunciton(props: any) {
   return (
     <>
       <Button onClick={() => count()}>延迟计算</Button>
-      {/* <Button onClick={() => count2()}>动态计算</Button> */}
+      <Button onClick={() => count2()}>动态计算</Button>
       <div>
         <Button onClick={() => handleCopy(inputValue)}>复制</Button>
         <Input
