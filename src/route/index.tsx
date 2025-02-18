@@ -21,6 +21,7 @@ import Test from '../pages/ystest/index.tsx';
 import Zustand from '../pages/zustand/index.tsx';
 import ExTable from '../pages/exTable/index.tsx';
 import LazyFunction from '../pages/lazyFunction/index.tsx';
+import WebSocketTest from '../pages/websocketTest/index.tsx';
 export interface CustomRouteObject extends NonIndexRouteObject {
   path: string;
   element?: React.ReactNode | null;
@@ -107,6 +108,10 @@ export const routeList: CustomRouteObject[] = [
   {
     path: '/lazyFunction',
     element: <LazyFunction />,
+  },
+  {
+    path: '/webSocketTest',
+    element: <WebSocketTest />,
   },
   {
     path: '*',
